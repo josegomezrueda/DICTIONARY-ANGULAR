@@ -1,0 +1,20 @@
+<div class="infodata">
+    <div *ngIf="data.tipoAccion==='mostrarTodo'; else noMostrarTodo">
+        <div *ngIf="idioma==='esp'; else noesp">
+            <app-fila-tabla *ngFor="let datoEsp of datosEsp" [filaPalabra]="datoEsp"></app-fila-tabla>
+        </div>
+        <ng-template #noesp>
+            <app-fila-tabla *ngFor="let datoIng of datosIng" [filaPalabra]="datoIng"></app-fila-tabla>
+        </ng-template>
+    </div>
+    <ng-template #noMostrarTodo>
+        <div *ngIf="idioma==='esp'; else noesp">
+            <app-fila-tabla [filaPalabra]="datosEsp"></app-fila-tabla>
+        </div>
+        <ng-template #noesp>
+            <app-fila-tabla [filaPalabra]="datosIng"></app-fila-tabla>
+        </ng-template>
+    </ng-template>
+
+     <div><button mat-raised-button color='primary' (click)="cerrarVentana()">Cerrar</button></div>
+</div>

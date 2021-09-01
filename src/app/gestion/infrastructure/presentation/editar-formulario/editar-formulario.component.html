@@ -1,0 +1,42 @@
+<h1><b>{{titulo}}</b></h1>
+<div >
+    <form class="formulario">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{palabraMod}}</mat-label>
+            <input #palabra type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts(palabra.value)'>
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    <mat-divider></mat-divider>
+    <div *ngIf="ocultar===true; else noocultar">
+        <form [formGroup]="FormPalabra" class="formulario">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <input matInput id='text' formControlName="descripcion">
+                <mat-icon matSuffix>g_translate</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid" (click)='actualizarValor()'>Editar</button>
+        </form>
+    </div>
+    <ng-template #noocultar>
+        <form [formGroup]="FormPalabra" class="formulario">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Word</mat-label>
+                <input matInput id='text' formControlName="palabra">
+                <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Spanish word</mat-label>
+                <input matInput id='text' formControlName="palabraEspanol">
+                <mat-icon matSuffix>g_translate</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid" (click)='actualizarValor()'>Edit</button>
+        </form>
+    </ng-template>
+
+</div>

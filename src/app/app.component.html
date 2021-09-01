@@ -1,0 +1,46 @@
+<app-nav-menu></app-nav-menu>
+<p-toast></p-toast>
+<div class="contenedor-padre">
+    <mat-sidenav-container>
+
+        <mat-sidenav #sidenav mode="side">
+            <div class='cuadro'>
+                <button mat-button class="menu-button" routerLink="/">
+                    <mat-icon>search</mat-icon>
+                    <span>Diccionario</span>
+                </button>
+
+                <button mat-button class="menu-button" routerLink="/crear">
+                    <mat-icon>create_new_folder</mat-icon>
+                    <span>Crear</span>
+                </button>
+
+                <button mat-button class="menu-button" routerLink="/editar">
+                    <mat-icon>edit</mat-icon>
+                    <span>Editar</span>
+                </button>
+
+                <button mat-button class="menu-button" routerLink="/borrar">
+                    <mat-icon>delete</mat-icon>
+                    <span>Borrar</span>
+                </button>
+
+            </div>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="distribution">
+                <button mat-raised-button color="primary" (click)="sidenav.toggle()">
+                    <mat-icon *ngIf="!sidenav.opened">
+                        keyboard_arrow_right
+                    </mat-icon>
+                    <mat-icon *ngIf="sidenav.opened">
+                        keyboard_arrow_left
+                    </mat-icon>
+                </button>
+            </div>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    {{tituloPalabra}}: {{palabra}}
+  </mat-toolbar>
+  <div class="content">
+    <mat-card class="mat-elevation-z4">
+
+      <mat-card-content>
+        <div *ngIf="idioma==='esp'; else noespa">
+          <b>{{definicion}}: </b>{{descripcion}}
+        </div>
+        <ng-template #noespa>
+        </ng-template>
+      </mat-card-content>
+      <mat-card-content>
+        
+          <b>{{traduccion}}: </b>
+          <div *ngIf="idioma==='esp'; else noesp" >
+              <div *ngFor="let palabraTraducida of palabrasTraducidas">
+                {{palabraTraducida.palabra}}
+              </div>
+          </div>
+          <ng-template #noesp>
+            {{palabraTraducida}}
+        </ng-template>
+        
+      </mat-card-content>
+
+    </mat-card>
+  </div>

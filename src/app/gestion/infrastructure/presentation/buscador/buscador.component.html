@@ -1,0 +1,16 @@
+<div class="doc">
+    <h1><b>{{titulo}}</b></h1>
+    <div class='img'>
+        <img class='imagen_central' src="../../../../../assets/imagenes/diccionario.jpg">
+    </div>
+    <form class="formulario" [formGroup]="idForm">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{buscador}}</mat-label>
+            <input matInput id='text' formControlName="id">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!idForm.valid" (click)="buscarId()">{{buscar}}</button>
+    </form>
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="primary" (click)="mostrarPalabras()">{{mostrar}}</button>
+</div>
