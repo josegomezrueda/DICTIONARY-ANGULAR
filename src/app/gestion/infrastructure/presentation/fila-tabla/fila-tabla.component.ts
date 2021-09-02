@@ -17,9 +17,15 @@ export class FilaTablaComponent implements OnInit {
   public descripcion: string='';
   public traduccion: string='';
   public definicion: string='';
-  public palabraTraducida: string='';
-  public palabrasTraducidas:PalabraIng[]=[];
+  public palabrasEsp:PalabraEsp[]=[];
+  public palabrasIng:PalabraIng[]=[];
+  public palabraEsp:PalabraEsp;
+  public palabraIng:PalabraIng;
   public idioma: string='';
+  public fechaAlta: string='';
+  public fechaModificacion: string='';
+  public fechaModificacionDate: boolean;
+
 
   @Input() filaPalabra: any;
   constructor() { }
@@ -28,20 +34,31 @@ export class FilaTablaComponent implements OnInit {
     this.id=this.filaPalabra.id;
     this.palabra=this.filaPalabra.palabra;
     this.descripcion=this.filaPalabra.descripcion;
-
+    if(this.filaPalabra.fechaModificacion!==null){
+      this.fechaModificacionDate=true
+    }else{
+      this.fechaModificacionDate=false
+    }
     if (localStorage.getItem('idioma')=='esp'){
       this.idioma='esp'
       this.tituloPalabra='Palabra';
-      this.traduccion='Traudcción al inglés';
+      this.traduccion='Traducción al inglés';
       this.definicion='Definición';
-      this.palabrasTraducidas=this.filaPalabra.palabrasIngles
-     
+      this.fechaAlta='Fecha Alta';
+      this.fechaModificacion='Fecha Modificación';
+      this.palabrasEsp=this.filaPalabra.palabrasIngles
+      this.palabraEsp=this.filaPalabra
+
     }else{
-      this.idioma='en'
+      this.idioma='en';
       this.tituloPalabra='Word';
       this.traduccion='Translate to spanish';
       this.definicion='Definition';
-      this.palabraTraducida=this.filaPalabra.espanolSimpleOutputDto.palabra
+      this.fechaAlta='Create date';
+      this.fechaModificacion='Modification date';
+      this.palabrasIng=this.filaPalabra.espanolSimpleOutputDto.palabra;
+      this.palabraIng=this.filaPalabra;
     }
+
   }
 }

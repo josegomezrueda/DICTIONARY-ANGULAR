@@ -1,29 +1,62 @@
-<mat-toolbar color="primary">
+<div class='tarjeta'>
+  <mat-toolbar color="primary">
     {{tituloPalabra}}: {{palabra}}
   </mat-toolbar>
   <div class="content">
     <mat-card class="mat-elevation-z4">
 
       <mat-card-content>
+        <div *ngIf="idioma==='esp'; else noes">
+          <b>{{definicion}}: </b>
+          <div>
+            {{descripcion}}
+          </div>
+        </div>
+        <ng-template #noes>
+        </ng-template>
+        <b>{{traduccion}}: </b>
+        <div *ngIf="idioma==='esp'; else noesp">
+          <div *ngFor="let palabraTraducida of palabrasEsp">
+            {{palabraTraducida.palabra}}
+          </div>
+        </div>
+        <ng-template #noesp>
+          <div>
+            {{palabraIng.palabra}}
+          </div>
+        </ng-template>
+        <b>{{fechaAlta}}: </b>
         <div *ngIf="idioma==='esp'; else noespa">
-          <b>{{definicion}}: </b>{{descripcion}}
+          {{palabraEsp.fechaAlta | date: 'dd-MM-yyyy'}}
         </div>
         <ng-template #noespa>
-        </ng-template>
-      </mat-card-content>
-      <mat-card-content>
-        
-          <b>{{traduccion}}: </b>
-          <div *ngIf="idioma==='esp'; else noesp" >
-              <div *ngFor="let palabraTraducida of palabrasTraducidas">
-                {{palabraTraducida.palabra}}
-              </div>
+          <div>
+            {{palabraIng.fechaAlta | date: 'dd-MM-yyyy'}}
           </div>
-          <ng-template #noesp>
-            {{palabraTraducida}}
         </ng-template>
-        
+        <b>{{fechaModificacion}}: </b>
+        <div *ngIf="idioma==='esp'; else noespal">
+          <div *ngIf="fechaModificacionDate===true; else nomos">
+            {{palabraEsp.fechaModificacion | date: 'dd-MM-yyyy'}}
+          </div>
+          <ng-template #nomos>
+            No existe modificación
+          </ng-template>
+        </div>
+        <ng-template #noespal>
+          <div>
+            <div *ngIf="fechaModificacionDate===true; else nomost">
+            {{palabraIng.fechaModificacion | date: 'dd-MM-yyyy'}}
+          </div>
+          <ng-template #nomost>
+            No existe modificación
+          </ng-template>
+          </div>
+        </ng-template>
+
+
       </mat-card-content>
 
     </mat-card>
   </div>
+</div>

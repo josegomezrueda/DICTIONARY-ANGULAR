@@ -1,11 +1,10 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { PalabraEsp } from 'src/app/gestion/domain/palabra-esp';
-import { PalabraIng } from 'src/app/gestion/domain/palabra-ing';
 
 import { IdiomaService } from '../../services/idioma.service';
 import { MessageToastService } from '../../services/message-toast.service';
@@ -28,12 +27,9 @@ export class DeleteComponent implements OnInit, OnDestroy {
   titulo: string;
   idiomaSubscribe: Subscription;
   palabraId: string;
-  borrar:string;
-  crear:string;
+  borrar: string;
+  crear: string;
 
-  FormPalabra = this.formBuilder.group({
-    id: ['', [Validators.required]]
-  })
 
 
   constructor(
@@ -107,36 +103,57 @@ export class DeleteComponent implements OnInit, OnDestroy {
     return this.palabras.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  getPosts(event: string) {
-    this.palabraId=event;
+  borrarValor(palabra: string) {
     if (localStorage.getItem('idioma') === 'esp') {
-      this.palabrasService.cargarPalabraEsp(event).subscribe(respuesta => {
-        this.FormPalabra.patchValue(respuesta);
-      })
+      this.palabrasService.cargarPalabraEsp(palabra).subscribe(palabraEscogida => {
+        this.palabrasService.borrarPalabraEsp(palabraEscogida.palabra).subscribe(respuesta => {
+          this.messageToastService.showToastSuccess('Borrar Palabra', 'La palabra se ha borrado correctamente')
+        },
+        error => {
+          if (error = 404) {
+            this.messageToastService.showToastError('ERROR', 'No has seleccionado palabra')
+          } else {
+            this.messageToastService.showToastError('ERROR', error)
+          }
+        })
+      },
+        error => {
+          if (error = 400) {
+            this.messageToastService.showToastError('ERROR', 'La palabra que se quiere eliminar no existe en el diccionario')
+          } else {
+            this.messageToastService.showToastError('ERROR', error)
+          }
+        })
     } else {
-      this.palabrasService.cargarPalabraIng(event).subscribe(respuesta => {
-        this.FormPalabra.patchValue(respuesta);
-      })
+      this.palabrasService.cargarPalabraIng(palabra).subscribe(palabraEscogida => {
+        this.palabrasService.borrarPalabraIng(palabraEscogida.palabra).subscribe(respuesta => {
+          this.messageToastService.showToastSuccess('Borrar Palabra', 'La palabra se ha borrado correctamente')
+        },
+        error => {
+          if (error = 404) {
+            this.messageToastService.showToastError('ERROR', 'There is not word Selected')
+          } else {
+            this.messageToastService.showToastError('ERROR', error)
+          }
+        } 
+        )
+      },
+        error => {
+          if (error = 400) {
+            this.messageToastService.showToastError('ERROR', 'Word does not exist in dictionary')
+          } else {
+            this.messageToastService.showToastError('ERROR', error)
+          }
+        })
     }
   }
-  borrarValor() {
-    if(localStorage.getItem('idioma')==='esp'){
-      this.palabrasService.borrarPalabraEsp(this.palabraId).subscribe(respuesta=>{
-        this.messageToastService.showToastSuccess('Borrar Palabra', 'La palabra se ha borrado correctamente')
-      })
 
-    }else{
-      this.palabrasService.borrarPalabraIng(this.palabraId).subscribe(respuesta=>{
-        this.messageToastService.showToastSuccess('Borrar Palabra', 'La palabra se ha borrado correctamente')
-      })
-    }
-  }
-  public palabrasEspanol(){
+  public palabrasEspanol() {
     this.palabraMod = 'Palabra';
     this.titulo = 'BORRAR';
     this.borrar = 'Borrar';
   }
-  public palabrasIngles(){
+  public palabrasIngles() {
     this.palabraMod = 'Word';
     this.titulo = 'DELETE';
     this.borrar = 'delete';

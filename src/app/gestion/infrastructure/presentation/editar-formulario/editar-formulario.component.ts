@@ -28,7 +28,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
   FormPalabra: FormGroup;
   palabraId: string;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private readonly idioma: IdiomaService,
@@ -37,34 +36,30 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
     
   ) {
     this.idiomaSubscribe = this.idioma.idiomaUpdated.subscribe((value: string) => {
+      this.escogerForm(value);
       if (value === 'esp') {
         this.lenguaje = 'esp';
         this.palabrasEspanol();
         this.cogerParametros(value);
-        this.escogerForm(value);
-
       } else {
         this.lenguaje = 'en';
         this.palabrasIngles();
         this.cogerParametros(value);
-        this.escogerForm(value);
 
       }
     })
   }
   ngOnInit(): void {
+    this.escogerForm(localStorage.getItem('idioma') || '')
     if (localStorage.getItem('idioma') === 'esp') {
       this.lenguaje = 'esp';
       this.palabrasEspanol();
       this.cogerParametros(localStorage.getItem('idioma') || '')
-      this.escogerForm(localStorage.getItem('idioma') || '')
 
     } else {
       this.lenguaje = 'en';
       this.palabrasIngles();
       this.cogerParametros(localStorage.getItem('idioma') || '')
-      this.escogerForm(localStorage.getItem('idioma') || '')
-
     }
   }
 
@@ -76,7 +71,8 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
     if (idioma === 'esp') {
       this.ocultar = true;
       this.FormPalabra = this.formBuilder.group({
-        descripcion: ['', [Validators.required]],
+        palabra: ['', [Validators.required]],
+        descripcion: ['', [Validators.required]]
       })
     } else {
       this.ocultar = false;
@@ -120,20 +116,38 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
     const filterValue = value.toLowerCase();
     return this.palabras.filter(option => option.toLowerCase().includes(filterValue));
   }
-
-  getPosts(event: string) {
-    this.palabraId=event;
+  
+  buscarPalabra(palabra: string) {
     if (localStorage.getItem('idioma') === 'esp') {
-      this.palabrasService.cargarPalabraEsp(event).subscribe(respuesta => {
+      this.palabrasService.cargarPalabraEsp(palabra).subscribe(respuesta => {
         this.FormPalabra.patchValue(respuesta);
+
+      },
+      error => {
+        if (error = 400) {
+          this.messageToastService.showToastError('ERROR', 'La palabra introducida no existe en el diccionario')
+          this.escogerForm(localStorage.getItem('idioma')||'')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+          this.escogerForm(localStorage.getItem('idioma')||'')
+        }
+
       })
     } else {
-      this.palabrasService.cargarPalabraIng(event).subscribe(respuesta => {
+      this.palabrasService.cargarPalabraIng(palabra).subscribe(respuesta => {
         this.FormPalabra.patchValue(respuesta);
+
+      },
+      error => {
+        if (error = 400) {
+          this.messageToastService.showToastError('ERROR', 'Word does not exist in dictionary')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+        }
       })
     }
   }
-
+  
   actualizarValor(){
         
     if(localStorage.getItem('idioma')==='esp'){
@@ -141,6 +155,13 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
       palabraEsp.palabra=this.palabraId
       this.palabrasService.editarPalabraEsp(palabraEsp).subscribe(respuesta=>{
         this.messageToastService.showToastSuccess('Editar Palabra', 'La palabra se ha editado correctamente')
+      },
+      error => {
+        if (error = 404) {
+          this.messageToastService.showToastError('ERROR', 'No es posible editar la palabra seleccionada')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+        }
       })
       
     }else{
@@ -148,6 +169,13 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
       palabraIng.palabra=this.palabraId
       this.palabrasService.editarPalabraIng(palabraIng).subscribe(respuesta=>{
         this.messageToastService.showToastSuccess('Edit Word', 'Word is updated correctly')
+      },
+      error => {
+        if (error = 404) {
+          this.messageToastService.showToastError('ERROR', 'It is not possible edit this word')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+        }
       })
     }
   }

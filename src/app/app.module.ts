@@ -41,7 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BuscadorComponent } from './gestion/infrastructure/presentation/buscador/buscador.component';
 import { MuestraDatosComponent } from './gestion/infrastructure/presentation/muestra-datos/muestra-datos.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FilaTablaComponent } from './gestion/infrastructure/presentation/fila-tabla/fila-tabla.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +54,8 @@ import { DeleteComponent } from './gestion/infrastructure/presentation/delete/de
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { InterceptorService } from './gestion/infrastructure/services/interceptor.service';
+
 
 
 
@@ -114,13 +116,13 @@ import { MessageService } from 'primeng/api';
     MatTreeModule,
 
     ToastModule
-
-
-
-
-
   ],
-  providers: [MessageService],
+  providers: [MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService, multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 
 })

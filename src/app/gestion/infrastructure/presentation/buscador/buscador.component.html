@@ -3,14 +3,22 @@
     <div class='img'>
         <img class='imagen_central' src="../../../../../assets/imagenes/diccionario.jpg">
     </div>
-    <form class="formulario" [formGroup]="idForm">
+    <form class='formulario'>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>{{buscador}}</mat-label>
-            <input matInput id='text' formControlName="id">
+            <mat-label>{{palabraMod}}</mat-label>
+            <input #palabra type="text" placeholder="Pick one" matInput  [formControl]="myControl"
+                [matAutocomplete]="auto" >
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="!idForm.valid" (click)="buscarId()">{{buscar}}</button>
+        <button mat-raised-button color="primary" 
+            (click)="buscarId(palabra.value)">{{buscar}}</button>
     </form>
+
     <mat-divider></mat-divider>
     <button mat-raised-button color="primary" (click)="mostrarPalabras()">{{mostrar}}</button>
 </div>

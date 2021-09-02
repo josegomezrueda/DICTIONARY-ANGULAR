@@ -5,6 +5,7 @@ import { PalabraIng } from '../../../domain/palabra-ing';
 
 import { BuscadorComponent } from '../buscador/buscador.component';
 import { ServicioPalabrasService } from '../../services/servicio-palabras.service';
+import { Router } from '@angular/router';
 
 
 
@@ -19,36 +20,62 @@ export class MuestraDatosComponent implements OnInit {
   datosIng: PalabraIng[];
   datosEsp: PalabraEsp[];
   idioma:string;
+  cerrar:string;
+  editar:string;
+  borrar:string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router,
     public dialogEditEs: MatDialogRef<BuscadorComponent>) { }
 
 
   
   ngOnInit(): void {
+    console.log(this.data)
     this.getIdioma();
   }
   cerrarVentana() {
     this.dialogEditEs.close();
   }
+  editarVentana() {
+    this.dialogEditEs.close();
+    this.router.navigate(['/editar']);
+  }
+  borrarVentana() {
+    this.dialogEditEs.close();
+    this.router.navigate(['/borrar']);
+  }
 
   getIdioma(){
     if (localStorage.getItem('idioma')==='esp'){
+      this.palabrasEspanol();
       this.idioma='esp';
       if (this.data.tipoAccion==='mostrarTodo'){
         this.datosEsp = this.data.palabrasRec;
       }else{
-        this.datosEsp = this.data.respuesta;
+        this.datosEsp = this.data.palabraEsp;
       }
       
     }else if(localStorage.getItem('idioma')==='en'){
+      this.palabrasIngles();
       this.idioma='en';
       if (this.data.tipoAccion==='mostrarTodo'){
         this.datosIng = this.data.palabrasRec;
       }else{
-        this.datosIng = this.data.respuesta;
+        this.datosIng = this.data.palabraIng;
       }
     }
   }
+  public palabrasEspanol() {
+    this.cerrar = 'Cerrar';
+    this.editar = 'Editar';
+    this.borrar = 'Borrar';
+  }
+  public palabrasIngles() {
+    this.cerrar = 'Close';
+    this.editar = 'Edit';
+    this.borrar = 'Delete';
+  }
+
 }

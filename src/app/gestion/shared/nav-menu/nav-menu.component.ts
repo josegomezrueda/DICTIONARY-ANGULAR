@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IdiomaService } from '../../infrastructure/services/idioma.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { IdiomaService } from '../../infrastructure/services/idioma.service';
   styleUrls: ['./nav-menu.component.scss']
 })
 export class NavMenuComponent implements OnInit {
-  
+  @Output() cambioLenguaje: EventEmitter<string> = new EventEmitter()
   idiomaEsp:string;
   idiomaIng:string;
   
@@ -18,15 +18,18 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem('idioma','esp');
     this.palabrasEspanol();
+    this.cambioLenguaje.emit('esp')
   }
 
   cambioIdioma(event:any) {
     if (localStorage.getItem('idioma') === 'en') {
       this.idiomaService.seleccionIdioma('esp');
       this.palabrasEspanol();
+      this.cambioLenguaje.emit('esp')
     } else {
       this.idiomaService.seleccionIdioma('en');
       this.palabrasIngles();
+      this.cambioLenguaje.emit('en')
       }
   }
 
