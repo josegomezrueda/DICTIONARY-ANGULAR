@@ -1,5 +1,6 @@
 <h1><b>{{titulo}}</b></h1>
 <div>
+    <h2>{{titulo2}}</h2>
     <form class="formulario">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>{{palabraMod}}</mat-label>
@@ -16,6 +17,7 @@
         (click)="buscarPalabra(palabra.value)">selecciona</button>
     </form>
     <mat-divider></mat-divider>
+    <h2>{{titulo3}}</h2>
     <div *ngIf="ocultar===true; else noocultar">
         <form [formGroup]="FormPalabra" class="formulario">
             <mat-form-field class="example-full-width" appearance="fill">

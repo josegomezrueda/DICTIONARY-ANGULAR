@@ -24,6 +24,8 @@ export class BuscadorComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   titulo: string;
+  titulo2: string;
+  titulo3: string;
   buscador: string;
   mostrar: string;
   buscar: string;
@@ -174,6 +176,8 @@ export class BuscadorComponent implements OnInit {
     this.mostrar = 'Mostrar todo';
     this.buscar = 'Buscar';
     this.palabraMod = 'Palabra';
+    this.titulo2='Buscar por palabra';
+    this.titulo3='Buscar todo';
   }
   public palabrasIngles() {
     this.buscador = 'Search';
@@ -181,5 +185,7 @@ export class BuscadorComponent implements OnInit {
     this.mostrar = 'Show all';
     this.buscar = 'Search';
     this.palabraMod = 'Word';
+    this.titulo2='Search for word';
+    this.titulo3='Search all';
   }
 }

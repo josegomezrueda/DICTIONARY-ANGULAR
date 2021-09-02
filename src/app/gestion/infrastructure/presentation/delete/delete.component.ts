@@ -29,6 +29,7 @@ export class DeleteComponent implements OnInit, OnDestroy {
   palabraId: string;
   borrar: string;
   crear: string;
+  titulo2: string;
 
 
 
@@ -152,10 +153,12 @@ export class DeleteComponent implements OnInit, OnDestroy {
     this.palabraMod = 'Palabra';
     this.titulo = 'BORRAR';
     this.borrar = 'Borrar';
+    this.titulo2='Escoge palabra para borrar';
   }
   public palabrasIngles() {
     this.palabraMod = 'Word';
     this.titulo = 'DELETE';
     this.borrar = 'delete';
+    this.titulo2='Choose word to delete';
   }
 }

@@ -23,6 +23,7 @@ export class MuestraDatosComponent implements OnInit {
   cerrar:string;
   editar:string;
   borrar:string;
+  titulo:string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -40,7 +41,8 @@ export class MuestraDatosComponent implements OnInit {
   }
   editarVentana() {
     this.dialogEditEs.close();
-    this.router.navigate(['/editar']);
+    if (localStorage.getItem('idioma')==='esp'){
+    this.router.navigate(['/editar']);}
   }
   borrarVentana() {
     this.dialogEditEs.close();
@@ -71,11 +73,13 @@ export class MuestraDatosComponent implements OnInit {
     this.cerrar = 'Cerrar';
     this.editar = 'Editar';
     this.borrar = 'Borrar';
+    this.titulo='Pulsa para redirigte a la pagina de borrar y editar';
   }
   public palabrasIngles() {
     this.cerrar = 'Close';
     this.editar = 'Edit';
     this.borrar = 'Delete';
+    this.titulo='Push to redirect to delete and edit page';
   }
 
 }

@@ -24,6 +24,8 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
   palabraMod: string;
   palabras: string[] = [];
   titulo: string;
+  titulo2: string;
+  titulo3: string;
   idiomaSubscribe: Subscription;
   FormPalabra: FormGroup;
   palabraId: string;
@@ -183,10 +185,14 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
   public palabrasEspanol(){
     this.palabraMod = 'Escoge palabra';
     this.titulo = 'EDITAR';
+    this.titulo2='Escoge palabra para autocompletar campos siguientes';
+    this.titulo3='Editar campos';
   }
   public palabrasIngles(){
     this.palabraMod = 'Choose word';
     this.titulo = 'EDIT';
+    this.titulo2='Choose word to autocomplete following fields';
+    this.titulo3='Edit fields';
   }
   public isValid() {
     return this.FormPalabra.invalid;
