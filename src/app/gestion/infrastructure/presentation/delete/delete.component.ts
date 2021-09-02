@@ -1,10 +1,9 @@
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, } from '@angular/forms';
 
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { PalabraEsp } from 'src/app/gestion/domain/palabra-esp';
 
 import { IdiomaService } from '../../services/idioma.service';
 import { MessageToastService } from '../../services/message-toast.service';

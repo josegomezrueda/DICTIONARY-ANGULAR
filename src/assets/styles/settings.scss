@@ -16,6 +16,14 @@
     gap:50px 20px;
 }
 
+.cuadroComponentes{
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
 .botoneras{
     display: flex;
     flex-direction: row;

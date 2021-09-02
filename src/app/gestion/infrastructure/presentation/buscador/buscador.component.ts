@@ -101,7 +101,7 @@ export class BuscadorComponent implements OnInit {
 
   buscarId(palabraRecibida: string) {
     if (palabraRecibida === '') {
-      this.messageToastService.showToastError('IMPORTANTE', 'Debes indtroducir una palabra')
+      this.messageToastService.showToastError('IMPORTANTE', 'Debes introducir una palabra')
     }else{
       this.tipoAccion = 'mostrarUno';
       if (localStorage.getItem('idioma') === 'esp') {

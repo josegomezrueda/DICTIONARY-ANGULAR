@@ -1,33 +1,6 @@
+@import '/src/assets/styles/components.scss';
+
 .distribution{
   float: left;
 }
-.cuadro{
-  margin: 10px 0px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-}
-mat-icon{
-  margin: 0px 5px;
-}
-mat-sidenav {
-    height: auto;
-    width: 200px;
-    background: #ff9800 ;
-    color: white;
-    border: white solid 5px;
-    border-radius: 12px;
-    text-align: center;
-  }
-  
-  mat-sidenav-content{
-    height: calc(100vh - 70px);
-    width: auto;
-    background:white;
-    color: #002b5c;
-    margin: 5px;
-    border: #ff9800 solid 5px;
-    border-radius: 12px;
-    text-align: center;
-  }
+

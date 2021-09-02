@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioPalabrasComponent } from '../presentation/formulario-palabras/formulario-palabras.component';
 import { PaginaInicioComponent } from '../presentation/pagina-inicio/pagina-inicio.component';
-import { AplicacionResolver } from 'src/app/gestion/infrastructure/resolvers/resolver';
 import { EditarFormularioComponent } from '../presentation/editar-formulario/editar-formulario.component';
 import { DeleteComponent } from '../presentation/delete/delete.component';
 

@@ -154,7 +154,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
         
     if(localStorage.getItem('idioma')==='esp'){
       let palabraEsp: PalabraEsp = this.FormPalabra.value;
-      palabraEsp.palabra=this.palabraId
       this.palabrasService.editarPalabraEsp(palabraEsp).subscribe(respuesta=>{
         this.messageToastService.showToastSuccess('Editar Palabra', 'La palabra se ha editado correctamente')
       },
@@ -168,7 +167,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
       
     }else{
       let palabraIng: PalabraIng = this.FormPalabra.value;
-      palabraIng.palabra=this.palabraId
       this.palabrasService.editarPalabraIng(palabraIng).subscribe(respuesta=>{
         this.messageToastService.showToastSuccess('Edit Word', 'Word is updated correctly')
       },
