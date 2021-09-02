@@ -76,12 +76,26 @@ export class FormularioPalabrasComponent implements OnInit {
       console.log(this.palabraEsp)
       this.palabrasService.crearPalabrasEsp(this.palabraEsp).subscribe(response => {
         this.messageToastService.showToastSuccess('Crear Palabra', 'La palabra se ha creado correctamente')
+      },
+      error => {
+        if (error = 409) {
+          this.messageToastService.showToastError('ERROR', 'La palabra ya existe')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+        }
       })
     } else {
       this.palabraIng = this.FormPalabra.value;
       console.log(this.palabraIng)
       this.palabrasService.crearPalabrasIng(this.palabraIng).subscribe(response => {
         this.messageToastService.showToastSuccess('Create Word', 'Word is saved correctly')
+      },
+      error => {
+        if (error = 409) {
+          this.messageToastService.showToastError('ERROR', 'Word exits')
+        } else {
+          this.messageToastService.showToastError('ERROR', error)
+        }
       })
     }
   }
