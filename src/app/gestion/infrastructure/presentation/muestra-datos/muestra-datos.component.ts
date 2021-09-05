@@ -19,6 +19,8 @@ export class MuestraDatosComponent implements OnInit {
 
   datosIng: PalabraIng[];
   datosEsp: PalabraEsp[];
+  datoIng: PalabraIng;
+  datoEsp: PalabraEsp;
   idioma:string;
   cerrar:string;
   editar:string;
@@ -30,10 +32,7 @@ export class MuestraDatosComponent implements OnInit {
     private router: Router,
     public dialogEditEs: MatDialogRef<BuscadorComponent>) { }
 
-
-  
   ngOnInit(): void {
-    console.log(this.data)
     this.getIdioma();
   }
   cerrarVentana() {
@@ -55,8 +54,10 @@ export class MuestraDatosComponent implements OnInit {
       this.idioma='esp';
       if (this.data.tipoAccion==='mostrarTodo'){
         this.datosEsp = this.data.palabrasRec;
+
       }else{
-        this.datosEsp = this.data.palabraEsp;
+        this.datoEsp = this.data.palabraEsp;
+
       }
       
     }else if(localStorage.getItem('idioma')==='en'){
@@ -65,7 +66,7 @@ export class MuestraDatosComponent implements OnInit {
       if (this.data.tipoAccion==='mostrarTodo'){
         this.datosIng = this.data.palabrasRec;
       }else{
-        this.datosIng = this.data.palabraIng;
+        this.datoIng = this.data.palabraIng;
       }
     }
   }

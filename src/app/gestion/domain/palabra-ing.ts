@@ -4,7 +4,15 @@ export interface PalabraIng {
     id:       number;
     palabra:          string;
     descripcion:         string;
-    fechaAlta:          string;
-    fechaModificacion:    string;
-    espanolSimpleOutputDto:   PalabraEsp;
+    fechaAlta:          Date;
+    fechaModificacion:    Date;
+    espanolSimpleOutputDto:   EspanolSimpleOutputDto;
+}
+
+export interface EspanolSimpleOutputDto {
+    id: number;
+    palabra: string;
+    descripcion: string;
+    fechaAlta: Date;
+    fechaModificacion: Date;
 }

@@ -55,6 +55,7 @@ import { DeleteComponent } from './gestion/infrastructure/presentation/delete/de
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InterceptorService } from './gestion/infrastructure/services/interceptor.service';
+import { FilaTablaInglesComponent } from './gestion/infrastructure/presentation/fila-tabla-ingles/fila-tabla-ingles.component';
 
 
 
@@ -69,8 +70,8 @@ import { InterceptorService } from './gestion/infrastructure/services/intercepto
     NavMenuComponent,
     FormularioPalabrasComponent,
     EditarFormularioComponent,
-    DeleteComponent
-
+    DeleteComponent,
+    FilaTablaInglesComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,8 +1,7 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { PalabraEsp } from '../../../domain/palabra-esp';
-import { PalabraIng } from '../../../domain/palabra-ing';
-
+import { PalabraEsp } from 'src/app/gestion/domain/palabra-esp';
+import { PalabraIng } from 'src/app/gestion/domain/palabra-ing';
 
 
 @Component({
@@ -11,54 +10,28 @@ import { PalabraIng } from '../../../domain/palabra-ing';
   styleUrls: ['./fila-tabla.component.scss']
 })
 export class FilaTablaComponent implements OnInit {
-  public id: number=0;
-  public palabra: string="";
-  public tituloPalabra: string='';
-  public descripcion: string='';
-  public traduccion: string='';
-  public definicion: string='';
-  public palabrasEsp:PalabraEsp[]=[];
-  public palabrasIng:PalabraIng[]=[];
-  public palabraEsp:PalabraEsp;
-  public palabraIng:PalabraIng;
-  public idioma: string='';
-  public fechaAlta: string='';
-  public fechaModificacion: string='';
-  public fechaModificacionDate: boolean;
 
 
-  @Input() filaPalabra: any;
+  public palabra: string;
+  public palabrasIng: PalabraIng[];
+  public descripcion: string;
+  public palabraCont: PalabraEsp;
+
+
+
+  @Input() filaPalabraEsp: PalabraEsp;
+
+
   constructor() { }
 
   ngOnInit(): void {
-    this.id=this.filaPalabra.id;
-    this.palabra=this.filaPalabra.palabra;
-    this.descripcion=this.filaPalabra.descripcion;
-    if(this.filaPalabra.fechaModificacion!==null){
-      this.fechaModificacionDate=true
-    }else{
-      this.fechaModificacionDate=false
-    }
-    if (localStorage.getItem('idioma')=='esp'){
-      this.idioma='esp'
-      this.tituloPalabra='Palabra';
-      this.traduccion='Traducción al inglés';
-      this.definicion='Definición';
-      this.fechaAlta='Fecha Alta';
-      this.fechaModificacion='Fecha Modificación';
-      this.palabrasEsp=this.filaPalabra.palabrasIngles
-      this.palabraEsp=this.filaPalabra
 
-    }else{
-      this.idioma='en';
-      this.tituloPalabra='Word';
-      this.traduccion='Translate to spanish';
-      this.definicion='Definition';
-      this.fechaAlta='Create date';
-      this.fechaModificacion='Modification date';
-      this.palabrasIng=this.filaPalabra.espanolSimpleOutputDto.palabra;
-      this.palabraIng=this.filaPalabra;
-    }
+
+    this.palabra = this.filaPalabraEsp.palabra ;
+    this.descripcion = this.filaPalabraEsp.descripcion;
+    this.palabraCont = this.filaPalabraEsp
+    this.palabrasIng=this.filaPalabraEsp.palabrasIngles || [];
 
   }
+
 }

@@ -3,21 +3,21 @@
     <div class="ordenTarjetas">
         <div *ngIf="data.tipoAccion==='mostrarTodo'; else noMostrarTodo">
             <div *ngIf="idioma==='esp'; else noesp" class="colocacion">
-                <app-fila-tabla *ngFor="let datoEsp of datosEsp" [filaPalabra]="datoEsp"></app-fila-tabla>
+                <app-fila-tabla *ngFor="let datoEspUno of datosEsp" [filaPalabraEsp]="datoEspUno"></app-fila-tabla>
             </div>
             <ng-template #noesp>
                 <div class="colocacion">
-                    <app-fila-tabla *ngFor="let datoIng of datosIng" [filaPalabra]="datoIng"></app-fila-tabla>
+                    <app-fila-tabla-ingles *ngFor="let datoIngUno of datosIng" [filaPalabraIng]="datoIngUno"></app-fila-tabla-ingles>
                 </div>
             </ng-template>
         </div>
         <ng-template #noMostrarTodo>
             <div *ngIf="idioma==='esp'; else noesp" class="colocacion">
-                <app-fila-tabla [filaPalabra]="datosEsp"></app-fila-tabla>
+                <app-fila-tabla [filaPalabraEsp]="datoEsp"></app-fila-tabla>
             </div>
             <ng-template #noesp>
                 <div class="colocacion">
-                    <app-fila-tabla [filaPalabra]="datosIng"></app-fila-tabla>
+                    <app-fila-tabla-ingles [filaPalabraIng]="datoIng"></app-fila-tabla-ingles>
                 </div>
             </ng-template>
         </ng-template>

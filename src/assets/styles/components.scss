@@ -25,3 +25,17 @@ float:middle;
       border-radius: 12px;
       text-align: center;
     }
+
+    mat-toolbar{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      width: auto;
+      
+    }
+    mat-card{
+      height: 134px;
+      width: auto;
+      overflow-y: auto;
+      
+    }

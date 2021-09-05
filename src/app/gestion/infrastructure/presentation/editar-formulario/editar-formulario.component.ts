@@ -35,7 +35,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
     private readonly idioma: IdiomaService,
     private readonly palabrasService: ServicioPalabrasService,
     private readonly messageToastService: MessageToastService
-    
   ) {
     this.idiomaSubscribe = this.idioma.idiomaUpdated.subscribe((value: string) => {
       this.escogerForm(value);

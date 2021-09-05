@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PalabraEsp } from '../../../domain/palabra-esp';
 import { PalabraIng } from '../../../domain/palabra-ing';
@@ -100,9 +100,8 @@ export class BuscadorComponent implements OnInit {
   }
 
   buscarId(palabraRecibida: string) {
-    if (palabraRecibida === '') {
-      this.messageToastService.showToastError('IMPORTANTE', 'Debes introducir una palabra')
-    }else{
+    const pattern = new RegExp('^[A-Z]+$', 'i');
+    if(pattern.test(palabraRecibida)){
       this.tipoAccion = 'mostrarUno';
       if (localStorage.getItem('idioma') === 'esp') {
         this.palabrasService.cargarPalabraEsp(palabraRecibida).subscribe(
@@ -138,6 +137,8 @@ export class BuscadorComponent implements OnInit {
             }
           })
       }
+    }else{
+      this.messageToastService.showToastError('IMPORTANTE', 'No puedes introducir numeros, caracteres especiales o espacios')
     }
   }
 
