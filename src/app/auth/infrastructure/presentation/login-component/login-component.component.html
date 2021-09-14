@@ -1,16 +1,19 @@
+<div class='formulario'>
+<h2>{{titulo}}</h2>
+
 <mat-card>
     <mat-card-title>Login</mat-card-title>
 <mat-card-content>
 <form [formGroup]="FormLogin">
   <p>
     <mat-form-field>
-      <input type="text" matInput placeholder="Username" formControlName="username">
+      <input type="text" matInput placeholder="{{user}}" formControlName="username">
     </mat-form-field>
  
 
   <p>
     <mat-form-field>
-      <input type="password" matInput placeholder="Password" formControlName="password">
+      <input type="password" matInput placeholder="{{password}}" formControlName="password">
     </mat-form-field>
   </p>
 
@@ -18,7 +21,9 @@
   <div class="button">
     <button type="submit" color="primary" mat-raised-button (click)=functionLogin() [disabled]="!FormLogin.valid">Login</button>
   </div>
-
+  <a [routerLink]="['/registro']">{{registro}}</a>
 </form>
 </mat-card-content>
 </mat-card>
+
+</div>

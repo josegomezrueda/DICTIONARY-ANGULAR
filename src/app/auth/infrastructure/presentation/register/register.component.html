@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-title>{{titulo}}</mat-card-title>
+<mat-card-content>
+<form [formGroup]="formRegister">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{user}}" formControlName="username">
+    </mat-form-field>
+ 
+
+  <p>
+    <mat-form-field>
+      <input type="password" matInput placeholder="{{password}}" formControlName="password">
+    </mat-form-field>
+  </p>
+
+
+  <div class="button">
+    <button type="submit" color="primary" mat-raised-button (click)=crearUsuario() [disabled]="!formRegister.valid">{{crear}}</button>
+  </div>
+  <a [routerLink]="['/login']">{{volver}}</a>
+</form>
+</mat-card-content>
+</mat-card>

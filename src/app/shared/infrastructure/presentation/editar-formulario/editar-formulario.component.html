@@ -1,72 +1,57 @@
-<div *ngIf='initSesion==true; else noocultar'>
-    <h1><b>{{titulo}}</b></h1>
-    <h2>SE DEBE REGISTRAR PARA PODER REALIZAR OPERACIONES</h2>
-    <div>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/login">
-            <mat-icon>input</mat-icon>
-            <span>LOGIN</span>
-        </button>
-    </div>
+<div class='inicio'>
+    <button mat-raised-button class="menu-button" color="primary" routerLink="/" (click)='functionLogout()'>
+        <mat-icon>close</mat-icon>
+        <span>LOGOUT</span>
+    </button>
 </div>
-<ng-template #noocultar>
-
-    <div class='inicio'>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/" (click)='functionLogout()'>
-            <mat-icon>close</mat-icon>
-            <span>LOGOUT</span>
-        </button>
-    </div>
-    <h1><b>{{titulo}}</b></h1>
-    <div>
-        <h2>{{titulo2}}</h2>
-        <form class="formulario">
+<h1><b>{{titulo}}</b></h1>
+<div>
+    <h2>{{titulo2}}</h2>
+    <form class="formulario">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{palabraMod}}</mat-label>
+            <input #palabra type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="buscarPalabra(palabra.value)">selecciona</button>
+    </form>
+    <mat-divider></mat-divider>
+    <h2>{{titulo3}}</h2>
+    <div *ngIf="ocultar===true; else noocultar">
+        <form [formGroup]="FormPalabra" class="formulario">
             <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>{{palabraMod}}</mat-label>
-                <input #palabra type="text" aria-label="Number" matInput [formControl]="myControl"
-                    [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option}}
-                    </mat-option>
-                </mat-autocomplete>
-                <mat-icon matSuffix>search</mat-icon>
+                <mat-label>Palabra</mat-label>
+                <input matInput id='text' formControlName="palabra">
+                <mat-icon matSuffix>create</mat-icon>
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="buscarPalabra(palabra.value)">selecciona</button>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <input matInput id='text' formControlName="descripcion">
+                <mat-icon matSuffix>g_translate</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
+                (click)='actualizarValor()'>Editar</button>
         </form>
-        <mat-divider></mat-divider>
-        <h2>{{titulo3}}</h2>
-        <div *ngIf="ocultar===true; else noocultar">
-            <form [formGroup]="FormPalabra" class="formulario">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Palabra</mat-label>
-                    <input matInput id='text' formControlName="palabra">
-                    <mat-icon matSuffix>create</mat-icon>
-                </mat-form-field>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Descripción</mat-label>
-                    <input matInput id='text' formControlName="descripcion">
-                    <mat-icon matSuffix>g_translate</mat-icon>
-                </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
-                    (click)='actualizarValor()'>Editar</button>
-            </form>
-        </div>
-        <ng-template #noocultar>
-            <form [formGroup]="FormPalabra" class="formulario">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Word</mat-label>
-                    <input matInput id='text' formControlName="palabra">
-                    <mat-icon matSuffix>create</mat-icon>
-                </mat-form-field>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Spanish word</mat-label>
-                    <input matInput id='text' formControlName="palabraEspanol">
-                    <mat-icon matSuffix>g_translate</mat-icon>
-                </mat-form-field>
-                <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
-                    (click)='actualizarValor()'>Edit</button>
-            </form>
-        </ng-template>
     </div>
-
-</ng-template>
+    <ng-template #noocultar>
+        <form [formGroup]="FormPalabra" class="formulario">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Word</mat-label>
+                <input matInput id='text' formControlName="palabra">
+                <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Spanish word</mat-label>
+                <input matInput id='text' formControlName="palabraEspanol">
+                <mat-icon matSuffix>g_translate</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
+                (click)='actualizarValor()'>Edit</button>
+        </form>
+    </ng-template>
+</div>

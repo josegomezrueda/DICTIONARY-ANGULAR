@@ -43,7 +43,7 @@ import { BuscadorComponent } from './shared/infrastructure/presentation/buscador
 import { MuestraDatosComponent } from './shared/infrastructure/presentation/muestra-datos/muestra-datos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponentComponent } from './auth/login-component/login-component.component';
+import { LoginComponentComponent } from './auth/infrastructure/presentation/login-component/login-component.component';
 import { FilaTablaInglesComponent } from './gestion/ing/infrastructure/presentation/fila-tabla-ingles/fila-tabla-ingles.component';
 import { DeleteComponent } from './shared/infrastructure/presentation/delete/delete.component';
 import { PaginaInicioComponent } from './shared/infrastructure/presentation/pagina-inicio/pagina-inicio.component';
@@ -54,6 +54,8 @@ import { EditarFormularioComponent } from './shared/infrastructure/presentation/
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InterceptorService } from './shared/infrastructure/services/interceptor.service';
+import { RegisterComponent } from './auth/infrastructure/presentation/register/register.component';
+
 
 
 
@@ -74,7 +76,8 @@ import { InterceptorService } from './shared/infrastructure/services/interceptor
     EditarFormularioComponent,
     DeleteComponent,
     FilaTablaInglesComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,

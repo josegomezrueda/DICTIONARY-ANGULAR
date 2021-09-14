@@ -1,14 +1,4 @@
-<div *ngIf='initSesion==true; else noocultar'>
-    <h1><b>{{titulo}}</b></h1>
-    <h2>SE DEBE REGISTRAR PARA PODER REALIZAR OPERACIONES</h2>
-    <div>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/login">
-            <mat-icon>input</mat-icon>
-            <span>LOGIN</span>
-        </button>
-    </div>
-</div>
-<ng-template #noocultar>
+
     <div class="formulario">
         <div class='inicio'>
             <button mat-raised-button class="menu-button" color="primary" routerLink="/" (click)='functionLogout()'>
@@ -33,4 +23,3 @@
         </form>
         <button mat-raised-button color="primary" (click)='borrarValor(palabra.value)'>{{borrar}}</button>
     </div>
-</ng-template>

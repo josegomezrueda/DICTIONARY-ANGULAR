@@ -4,37 +4,40 @@ import { FormularioPalabrasComponent } from '../presentation/formulario-palabras
 import { PaginaInicioComponent } from '../presentation/pagina-inicio/pagina-inicio.component';
 import { EditarFormularioComponent } from '../presentation/editar-formulario/editar-formulario.component';
 import { DeleteComponent } from '../presentation/delete/delete.component';
-import { LoginComponentComponent } from 'src/app/auth/login-component/login-component.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: PaginaInicioComponent
+    component: PaginaInicioComponent,
+    
   },
   {
     path: 'crear',
-    component: FormularioPalabrasComponent
+    component: FormularioPalabrasComponent,
+
   },
   {
     path: 'editar',
-    component: EditarFormularioComponent
+    component: EditarFormularioComponent,
+
   },
   {
     path: 'editar/:palabra',
-    component: EditarFormularioComponent
-  },
-  {
-    path: 'borrar/:palabra',
-    component: DeleteComponent
+    component: EditarFormularioComponent,
+
   },
   {
     path: 'borrar',
-    component: DeleteComponent
+    component: DeleteComponent,
+
   },
   {
-    path: 'login',
-    component: LoginComponentComponent
+    path: 'borrar/:palabra',
+    component: DeleteComponent,
+
   }
+
 
 ]
 

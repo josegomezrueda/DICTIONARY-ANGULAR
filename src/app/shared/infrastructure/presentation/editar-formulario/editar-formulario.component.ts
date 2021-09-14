@@ -31,7 +31,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
   FormPalabra: FormGroup;
   palabraId: string;
   palabraRecibida: string;
-  public initSesion: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,11 +56,6 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.getParam();
-    if (localStorage.getItem('logeado') !== 't') {
-      this.initSesion = true
-    } else {
-      this.initSesion = false
-    }
     this.escogerForm(localStorage.getItem('idioma') || '')
     if (localStorage.getItem('idioma') === 'esp') {
       this.lenguaje = 'esp';

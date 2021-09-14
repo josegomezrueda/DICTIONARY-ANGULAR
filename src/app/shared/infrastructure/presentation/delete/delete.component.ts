@@ -31,12 +31,10 @@ export class DeleteComponent implements OnInit, OnDestroy {
   crear: string;
   titulo2: string;
   palabraRecibida: string;
-  public initSesion: boolean=false;
 
 
 
   constructor(
-    private formBuilder: FormBuilder,
     private readonly idioma: IdiomaService,
     private readonly palabrasService: ServicioPalabrasService,
     private readonly messageToastService: MessageToastService,
@@ -58,11 +56,6 @@ export class DeleteComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.getParam();
-    if (localStorage.getItem('logeado')!=='t'){
-      this.initSesion=true
-    }else{
-      this.initSesion=false
-    }
     if (localStorage.getItem('idioma') === 'esp') {
       this.lenguaje = 'esp';
       this.palabrasEspanol()
