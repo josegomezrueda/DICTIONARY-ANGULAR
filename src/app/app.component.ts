@@ -11,9 +11,12 @@ export class AppComponent implements OnInit {
   crear: string;
   editar: string;
   borrar: string;
+  
   ngOnInit(): void {
 
   }
+
+
   onCambioIdioma(cambio: string) {
     if (cambio === 'esp') {
       this.diccionario='BÚSQUEDA';

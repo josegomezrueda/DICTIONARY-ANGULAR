@@ -1,0 +1,54 @@
+<div *ngIf='initSesion==true; else noocul'>
+    <h1><b>{{titulo}}</b></h1>
+    <h2>SE DEBE REGISTRAR PARA PODER REALIZAR OPERACIONES</h2>
+    <div>
+        <button mat-raised-button class="menu-button" color="primary" routerLink="/login">
+            <mat-icon>input</mat-icon>
+            <span>LOGIN</span>
+        </button>
+    </div>
+</div>
+<ng-template #noocul>
+    <div class='inicio'>
+        <button mat-raised-button class="menu-button" color="primary" routerLink="/" (click)='functionLogout()'>
+            <mat-icon>close</mat-icon>
+            <span>LOGOUT</span>
+        </button>
+    </div>
+    <h1><b>{{titulo}}</b></h1>
+    <div *ngIf="ocultar===true; else noocultar">
+        <form class="buscador" [formGroup]="FormPalabra" class='formulario'>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>palabra</mat-label>
+                <input matInput id='text' formControlName="palabra">
+                <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>descripcion</mat-label>
+                <input matInput id='text' formControlName="descripcion">
+                <mat-icon matSuffix>text_format</mat-icon>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
+                (click)=crearDatos()>{{crear}}</button>
+        </form>
+    </div>
+    <ng-template #noocultar>
+        <form class="buscador" [formGroup]="FormPalabra" class='formulario'>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>word</mat-label>
+                <input matInput id='text' formControlName="palabra">
+                <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Spanish Word</mat-label>
+                <input matInput id='text' formControlName="palabraEspanol">
+                <mat-icon matSuffix>g_translate</mat-icon>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="!FormPalabra.valid"
+                (click)=crearDatos()>{{crear}}</button>
+        </form>
+    </ng-template>
+</ng-template>

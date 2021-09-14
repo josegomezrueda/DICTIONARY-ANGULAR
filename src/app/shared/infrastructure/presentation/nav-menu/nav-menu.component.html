@@ -1,0 +1,15 @@
+
+<mat-tab-group mat-align-tabs="end" (selectedTabChange)="cambioIdioma($event)">
+    
+    <mat-tab>
+        <ng-template mat-tab-label label="Tab 1">
+            <img src="../../../../../assets/imagenes/espana.png">{{idiomaEsp}}
+        </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label label="Tab 2">
+            <img src="../../../../../assets/imagenes/uk.png">{{idiomaIng}}
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

@@ -39,23 +39,25 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BuscadorComponent } from './gestion/infrastructure/presentation/buscador/buscador.component';
-import { MuestraDatosComponent } from './gestion/infrastructure/presentation/muestra-datos/muestra-datos.component';
+import { BuscadorComponent } from './shared/infrastructure/presentation/buscador/buscador.component';
+import { MuestraDatosComponent } from './shared/infrastructure/presentation/muestra-datos/muestra-datos.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FilaTablaComponent } from './gestion/infrastructure/presentation/fila-tabla/fila-tabla.component';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaginaInicioComponent } from './gestion/infrastructure/presentation/pagina-inicio/pagina-inicio.component';
-import { NavMenuComponent } from './gestion/shared/nav-menu/nav-menu.component';
-import { FormularioPalabrasComponent } from './gestion/infrastructure/presentation/formulario-palabras/formulario-palabras.component';
-
-import { EditarFormularioComponent } from './gestion/infrastructure/presentation/editar-formulario/editar-formulario.component';
-import { DeleteComponent } from './gestion/infrastructure/presentation/delete/delete.component';
-
+import { LoginComponentComponent } from './auth/login-component/login-component.component';
+import { FilaTablaInglesComponent } from './gestion/ing/infrastructure/presentation/fila-tabla-ingles/fila-tabla-ingles.component';
+import { DeleteComponent } from './shared/infrastructure/presentation/delete/delete.component';
+import { PaginaInicioComponent } from './shared/infrastructure/presentation/pagina-inicio/pagina-inicio.component';
+import { FilaTablaComponent } from './gestion/esp/infrastructure/presentation/fila-tabla/fila-tabla.component';
+import { NavMenuComponent } from './shared/infrastructure/presentation/nav-menu/nav-menu.component';
+import { FormularioPalabrasComponent } from './shared/infrastructure/presentation/formulario-palabras/formulario-palabras.component';
+import { EditarFormularioComponent } from './shared/infrastructure/presentation/editar-formulario/editar-formulario.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { InterceptorService } from './gestion/infrastructure/services/interceptor.service';
-import { FilaTablaInglesComponent } from './gestion/infrastructure/presentation/fila-tabla-ingles/fila-tabla-ingles.component';
+import { InterceptorService } from './shared/infrastructure/services/interceptor.service';
+
+
+
+
 
 
 
@@ -71,7 +73,8 @@ import { FilaTablaInglesComponent } from './gestion/infrastructure/presentation/
     FormularioPalabrasComponent,
     EditarFormularioComponent,
     DeleteComponent,
-    FilaTablaInglesComponent
+    FilaTablaInglesComponent,
+    LoginComponentComponent
   ],
   imports: [
     HttpClientModule,

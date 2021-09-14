@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EspRoutingRoutingModule } from './gestion/infrastructure/esp-routing/esp-routing-routing.module';
+import { EspRoutingRoutingModule } from './shared/infrastructure/esp-routing/esp-routing-routing.module';
 
 
 const routes: Routes = [

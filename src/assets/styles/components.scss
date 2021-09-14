@@ -14,9 +14,14 @@ float:middle;
       border-radius: 12px;
       text-align: center;
     }
-    
+    .inicio{
+      text-align: right;
+      margin: 2px;
+  }
     mat-sidenav-content{
+      
       height: calc(100vh - 70px);
+      justify-content: space-between;
       width: auto;
       background:white;
       color: #002b5c;
