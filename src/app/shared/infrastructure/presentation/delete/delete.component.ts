@@ -133,7 +133,13 @@ export class DeleteComponent implements OnInit, OnDestroy {
               this.messageToastService.showToastError('ERROR', error)
             }
           })
-      })
+      },
+      error => {if (error == 404) {
+        this.messageToastService.showToastError('ERROR', 'La palabra no existe')
+      }  else {
+        this.messageToastService.showToastError('ERROR', error)
+      }
+    })
     } else {
       this.palabrasService.cargarPalabraIng(palabra).subscribe(palabraEscogida => {
         this.palabrasService.borrarPalabraIng(palabraEscogida.palabra).subscribe(respuesta => {
@@ -149,9 +155,14 @@ export class DeleteComponent implements OnInit, OnDestroy {
             }else {
               this.messageToastService.showToastError('ERROR', error)
             }
-          }
-        )
-      })
+          })
+      },
+      error => {if (error == 404) {
+        this.messageToastService.showToastError('ERROR', 'Word does not exist')
+      }  else {
+        this.messageToastService.showToastError('ERROR', error)
+      }
+    })
     }
   }
 
