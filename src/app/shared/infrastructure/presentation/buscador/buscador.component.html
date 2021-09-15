@@ -1,21 +1,15 @@
 <div class="doc">
-    <div class='inicio' *ngIf='initSesion==true; else noocultar'>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/login">
-            <mat-icon>input</mat-icon>
-            <span>LOGIN</span>
-        </button>
-    </div>
-    <ng-template #noocultar>
+
+ 
         <div class='inicio'>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/login" (click)='functionLogout()'>
+        <button mat-raised-button class="menu-button" color="primary" (click)='functionLogout()'>
             <mat-icon>close</mat-icon>
             <span>LOGOUT</span>
         </button>
     </div>
-    </ng-template>
 
-    <h1><b>{{titulo}}</b></h1>
 
+    <h1><b>{{titulo}} DE USUARIO</b></h1>
     <div class='img'>
         <img class='imagen_central' src="../../../../../assets/imagenes/diccionario.jpg">
     </div>
@@ -39,4 +33,5 @@
     <mat-divider></mat-divider>
     <h2>{{titulo3}}</h2>
     <button mat-raised-button color="primary" (click)="mostrarPalabras()">{{mostrar}}</button>
+    
 </div>

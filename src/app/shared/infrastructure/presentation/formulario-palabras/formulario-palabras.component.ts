@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PalabraEsp } from 'src/app/gestion/esp/domain/palabra-esp';
 import { PalabraIng } from 'src/app/gestion/ing/domain/palabra-ing';
@@ -24,13 +24,13 @@ export class FormularioPalabrasComponent implements OnInit {
   FormPalabra: FormGroup;
   ocultar: boolean;
   idiomaSubscribe: Subscription;
-  public initSesion: boolean=false;
 
   constructor(
     private readonly messageToastService: MessageToastService,
     private formBuilder: FormBuilder,
     private readonly idioma: IdiomaService,
-    private readonly palabrasService: ServicioPalabrasService
+    private readonly palabrasService: ServicioPalabrasService,
+    private router: Router
   ) {
     this.idiomaSubscribe = this.idioma.idiomaUpdated.subscribe((value: string) => {
       this.escogerForm(value);
@@ -44,11 +44,6 @@ export class FormularioPalabrasComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (localStorage.getItem('logeado')!=='t'){
-      this.initSesion=true
-    }else{
-      this.initSesion=false
-    }
     this.escogerForm(localStorage.getItem('idioma') || '');
     if (localStorage.getItem('idioma') === 'esp') {
       this.palabrasEspanol();
@@ -84,7 +79,7 @@ export class FormularioPalabrasComponent implements OnInit {
         this.messageToastService.showToastSuccess('Crear Palabra', 'La palabra se ha creado correctamente')
       },
       error => {
-        if (error = 409) {
+        if (error == 409) {
           this.messageToastService.showToastError('ERROR', 'La palabra ya existe')
         } else {
           this.messageToastService.showToastError('ERROR', error)
@@ -97,7 +92,7 @@ export class FormularioPalabrasComponent implements OnInit {
         this.messageToastService.showToastSuccess('Create Word', 'Word is saved correctly')
       },
       error => {
-        if (error = 409) {
+        if (error == 409) {
           this.messageToastService.showToastError('ERROR', 'Word exits')
         } else {
           this.messageToastService.showToastError('ERROR', error)
@@ -108,6 +103,7 @@ export class FormularioPalabrasComponent implements OnInit {
 
   functionLogout(){
     localStorage.removeItem('logeado');
+    this.router.navigate(['/login'])
   }
   
   public palabrasEspanol() {

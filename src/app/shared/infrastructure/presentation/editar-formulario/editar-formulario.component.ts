@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { PalabraEsp } from 'src/app/gestion/esp/domain/palabra-esp';
@@ -37,7 +37,8 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
     private readonly idioma: IdiomaService,
     private readonly palabrasService: ServicioPalabrasService,
     private readonly messageToastService: MessageToastService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
 
     this.idiomaSubscribe = this.idioma.idiomaUpdated.subscribe((value: string) => {
@@ -175,7 +176,7 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
         this.messageToastService.showToastSuccess('Editar Palabra', 'La palabra se ha editado correctamente')
       },
         error => {
-          if (error = 404) {
+          if (error == 404) {
             this.messageToastService.showToastError('ERROR', 'No es posible editar la palabra seleccionada')
           } else {
             this.messageToastService.showToastError('ERROR', error)
@@ -188,7 +189,7 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
         this.messageToastService.showToastSuccess('Edit Word', 'Word is updated correctly')
       },
         error => {
-          if (error = 404) {
+          if (error == 404) {
             this.messageToastService.showToastError('ERROR', 'It is not possible edit this word')
           } else {
             this.messageToastService.showToastError('ERROR', error)
@@ -199,6 +200,7 @@ export class EditarFormularioComponent implements OnInit, OnDestroy {
 
   functionLogout() {
     localStorage.removeItem('logeado');
+    this.router.navigate(['/login'])
   }
 
   public palabrasEspanol() {

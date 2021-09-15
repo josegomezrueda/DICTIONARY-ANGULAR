@@ -37,10 +37,10 @@ export class AuthService {
 
     this.usuariosService.cargarUsuarioUsername(username).subscribe((resp) => {
       if (resp.length!==0) {
-        this.usuariosService.cargarUsuarioPassword(password).subscribe((resp) => {
-          if(resp.length!==0){
+        this.usuariosService.cargarUsuarioPassword(password).subscribe((respP) => {
+          if(respP.length!==0){
             localStorage.setItem('logeado', 't')
-            this.messageToastService.showToastSuccess('IMPORTANTE', 'El login ha sido realizado correctamente')
+            this.messageToastService.showToastSuccess('', 'Bienvenido '+resp[0].username)
             this.router.navigate(['/'])
           }else{
             localStorage.setItem('logeado', 'f')

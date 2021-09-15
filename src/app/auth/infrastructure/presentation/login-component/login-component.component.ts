@@ -27,8 +27,7 @@ export class LoginComponentComponent implements OnInit, OnDestroy {
   constructor(
     private readonly idioma: IdiomaService,
     private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private router: Router) {
+    private formBuilder: FormBuilder) {
     this.idiomaSubscribe = this.idioma.idiomaUpdated.subscribe((value: string) => {
       if (value === 'esp') {
         this.palabrasEspanol()
@@ -50,11 +49,7 @@ export class LoginComponentComponent implements OnInit, OnDestroy {
   functionLogin() {
     this.usuario = this.FormLogin.value;
     this.authService.login(this.usuario.username, this.usuario.password)
-    if (localStorage.getItem('logeado') === 't') {
-      this.router.navigate(['/'])
-    } else {
-      this.router.navigate(['/registro'])
-    }
+    
   }
   public palabrasEspanol() {
     this.titulo='INTRODUCE USUARIO Y CONTRASEÑA PARA UTILIZAR LA APLICACIÓN';

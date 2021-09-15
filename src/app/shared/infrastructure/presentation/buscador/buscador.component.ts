@@ -12,6 +12,7 @@ import { ServicioPalabrasService } from '../../services/servicio-palabras.servic
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MessageToastService } from '../../services/message-toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscador',
@@ -34,14 +35,14 @@ export class BuscadorComponent implements OnInit {
   palabraMod: string;
   palabraEsp: PalabraEsp;
   palabraIng: PalabraIng;
-  public initSesion: boolean=false;
   tipoAccion: string = '';
 
   constructor(
     public dialog: MatDialog,
     private readonly idioma: IdiomaService,
     private readonly palabrasService: ServicioPalabrasService,
-    private readonly messageToastService: MessageToastService
+    private readonly messageToastService: MessageToastService,
+    private router: Router
   ) {
 
     this.idioma.idiomaUpdated.subscribe((value: string) => {
@@ -58,11 +59,6 @@ export class BuscadorComponent implements OnInit {
 
   showFiller = false;
   ngOnInit(): void {
-    if (localStorage.getItem('logeado')!=='t'){
-      this.initSesion=true
-    }else{
-      this.initSesion=false
-    }
     if (localStorage.getItem('idioma') === 'esp') {
       this.cogerParametros(localStorage.getItem('idioma') || '')
       this.palabrasEspanol()
@@ -121,7 +117,7 @@ export class BuscadorComponent implements OnInit {
             });
           },
           error => {
-            if (error = 400) {
+            if (error == 400) {
               this.messageToastService.showToastError('ERROR', 'La palabra introducida no existe en el diccionario')
             } else {
               this.messageToastService.showToastError('ERROR', error)
@@ -137,7 +133,7 @@ export class BuscadorComponent implements OnInit {
           });
         },
           error => {
-            if (error = 400) {
+            if (error == 400) {
               this.messageToastService.showToastError('ERROR', 'Word does not exist in dictionary')
             } else {
               this.messageToastService.showToastError('ERROR', error)
@@ -181,6 +177,7 @@ export class BuscadorComponent implements OnInit {
 
   functionLogout(){
     localStorage.removeItem('logeado');
+    this.router.navigate(['/login'])
   }
   public palabrasEspanol() {
     this.buscador = 'Buscador';

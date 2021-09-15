@@ -1,16 +1,7 @@
-<div *ngIf='initSesion==true; else noocul'>
-    <h1><b>{{titulo}}</b></h1>
-    <h2>SE DEBE REGISTRAR PARA PODER REALIZAR OPERACIONES</h2>
-    <div>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/login">
-            <mat-icon>input</mat-icon>
-            <span>LOGIN</span>
-        </button>
-    </div>
-</div>
-<ng-template #noocul>
+
+
     <div class='inicio'>
-        <button mat-raised-button class="menu-button" color="primary" routerLink="/" (click)='functionLogout()'>
+        <button mat-raised-button class="menu-button" color="primary" (click)='functionLogout()'>
             <mat-icon>close</mat-icon>
             <span>LOGOUT</span>
         </button>
@@ -51,4 +42,3 @@
                 (click)=crearDatos()>{{crear}}</button>
         </form>
     </ng-template>
-</ng-template>
