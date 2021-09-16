@@ -1,3 +1,4 @@
+
 <app-nav-menu (cambioLenguaje)="onCambioIdioma($event)"></app-nav-menu>
 <p-toast></p-toast>
 <div class="contenedor-padre">
@@ -41,7 +42,9 @@
                 </button>
                 
             </div>
-            <router-outlet></router-outlet>
+            
+            <app-animation *ngIf="animacionSubscribe"></app-animation>
+            <router-outlet *ngIf="!animacionSubscribe"></router-outlet>
         </mat-sidenav-content>
 
     </mat-sidenav-container>

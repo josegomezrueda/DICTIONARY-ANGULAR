@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimacionServiceService } from './shared/infrastructure/services/animacion-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = 'diccionario';
   diccionario: string;
   crear: string;
   editar: string;
   borrar: string;
-  
+  animacionSubscribe: boolean;
+  constructor(
+    private readonly animacionService: AnimacionServiceService){
+      this.animacionService.animacionUpdated.subscribe((value: boolean)=>{
+        this.animacionSubscribe = value
+      } )
+    }
   ngOnInit(): void {
-
   }
 
 

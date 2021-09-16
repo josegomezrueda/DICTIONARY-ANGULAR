@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { PalabraEsp } from 'src/app/gestion/esp/domain/palabra-esp';
 import { PalabraIng } from 'src/app/gestion/ing/domain/palabra-ing';
+import { AnimacionServiceService } from '../../services/animacion-service.service';
 import { IdiomaService } from '../../services/idioma.service';
 import { MessageToastService } from '../../services/message-toast.service';
 import { ServicioPalabrasService } from '../../services/servicio-palabras.service';
@@ -29,6 +31,7 @@ export class FormularioPalabrasComponent implements OnInit {
     private readonly messageToastService: MessageToastService,
     private formBuilder: FormBuilder,
     private readonly idioma: IdiomaService,
+    private readonly animacionService: AnimacionServiceService,
     private readonly palabrasService: ServicioPalabrasService,
     private router: Router
   ) {
@@ -71,11 +74,11 @@ export class FormularioPalabrasComponent implements OnInit {
       })
     }
   }
-  public crearDatos() {
+  public crearDatos():void {
     if (localStorage.getItem('idioma') === 'esp') {
       this.palabraEsp = this.FormPalabra.value;
-      console.log(this.palabraEsp)
       this.palabrasService.crearPalabrasEsp(this.palabraEsp).subscribe(response => {
+        this.animacionService.seleccionAnimacion();
         this.messageToastService.showToastSuccess('Crear Palabra', 'La palabra se ha creado correctamente')
       },
       error => {
@@ -87,7 +90,6 @@ export class FormularioPalabrasComponent implements OnInit {
       })
     } else {
       this.palabraIng = this.FormPalabra.value;
-      console.log(this.palabraIng)
       this.palabrasService.crearPalabrasIng(this.palabraIng).subscribe(response => {
         this.messageToastService.showToastSuccess('Create Word', 'Word is saved correctly')
       },

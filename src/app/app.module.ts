@@ -55,6 +55,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InterceptorService } from './shared/infrastructure/services/interceptor.service';
 import { RegisterComponent } from './auth/infrastructure/presentation/register/register.component';
+import { AnimationComponent } from './shared/infrastructure/presentation/animation/animation.component';
 
 
 
@@ -77,7 +78,8 @@ import { RegisterComponent } from './auth/infrastructure/presentation/register/r
     DeleteComponent,
     FilaTablaInglesComponent,
     LoginComponentComponent,
-    RegisterComponent
+    RegisterComponent,
+    AnimationComponent
   ],
   imports: [
     HttpClientModule,

@@ -13,16 +13,14 @@ export class IdiomaService {
   }
   seleccionIdioma(idiomaRec: string): void {
 
-      if (idiomaRec === 'esp') {
-        this.idiomaUpdated.emit(idiomaRec)
-        localStorage.setItem('idioma', 'esp');
+    if (idiomaRec === 'esp') {
+      this.idiomaUpdated.emit(idiomaRec)
+      localStorage.setItem('idioma', 'esp');
 
-      } else {
-        this.idiomaUpdated.emit(idiomaRec)
-        localStorage.setItem('idioma', 'en');
+    } else {
+      this.idiomaUpdated.emit(idiomaRec)
+      localStorage.setItem('idioma', 'en');
 
-      }
-      console.log(localStorage.getItem('idioma'))
-
+    }
   }
 }

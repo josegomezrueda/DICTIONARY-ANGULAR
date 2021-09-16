@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AnimacionServiceService } from '../../services/animacion-service.service';
 import { IdiomaService } from '../../services/idioma.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class NavMenuComponent implements OnInit {
   idiomaIng:string;
   
   constructor(
-    private idiomaService: IdiomaService
+    private idiomaService: IdiomaService,
+    private readonly animacionService: AnimacionServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -23,11 +25,13 @@ export class NavMenuComponent implements OnInit {
 
   cambioIdioma(event:any) {
     if (localStorage.getItem('idioma') === 'en') {
+      this.animacionService.seleccionAnimacion();
       this.idiomaService.seleccionIdioma('esp');
       this.palabrasEspanol();
       this.cambioLenguaje.emit('esp')
     } else {
       this.idiomaService.seleccionIdioma('en');
+      this.animacionService.seleccionAnimacion();
       this.palabrasIngles();
       this.cambioLenguaje.emit('en')
       }

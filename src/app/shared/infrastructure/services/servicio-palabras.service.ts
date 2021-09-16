@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { PalabraEsp } from 'src/app/gestion/esp/domain/palabra-esp';
 import { PalabraIng } from 'src/app/gestion/ing/domain/palabra-ing';
 import { environment } from 'src/environments/environment';
@@ -35,8 +36,7 @@ export class ServicioPalabrasService {
 
   crearPalabrasEsp(palabra:PalabraEsp): Observable<PalabraEsp> {
     const url = this.url+'espanol';
-    return this.http.post<PalabraEsp>(url, palabra);
-  }
+    return this.http.post<PalabraEsp>(url, palabra)}
 
   crearPalabrasIng(palabra:PalabraIng): Observable<PalabraIng> {
     const url = this.url+'ingles';

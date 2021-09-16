@@ -176,7 +176,7 @@ export class BuscadorComponent implements OnInit {
   }
 
   functionLogout(){
-    localStorage.removeItem('logeado');
+    localStorage.removeItem('logeado')
     this.router.navigate(['/login'])
   }
   public palabrasEspanol() {

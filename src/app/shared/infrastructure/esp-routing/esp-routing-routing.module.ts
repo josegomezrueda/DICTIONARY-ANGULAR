@@ -4,13 +4,16 @@ import { FormularioPalabrasComponent } from '../presentation/formulario-palabras
 import { PaginaInicioComponent } from '../presentation/pagina-inicio/pagina-inicio.component';
 import { EditarFormularioComponent } from '../presentation/editar-formulario/editar-formulario.component';
 import { DeleteComponent } from '../presentation/delete/delete.component';
+import { AplicacionResolver } from '../resolvers/resolver';
 
 
 const routes: Routes = [
   {
     path: '',
     component: PaginaInicioComponent,
-    
+    /*resolve:{
+      persona: AplicacionResolver,
+    }*/
   },
   {
     path: 'crear',
@@ -25,7 +28,7 @@ const routes: Routes = [
   {
     path: 'editar/:palabra',
     component: EditarFormularioComponent,
-
+    
   },
   {
     path: 'borrar',
@@ -35,10 +38,7 @@ const routes: Routes = [
   {
     path: 'borrar/:palabra',
     component: DeleteComponent,
-
   }
-
-
 ]
 
 @NgModule({

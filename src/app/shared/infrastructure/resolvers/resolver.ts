@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, Router } from "@angular/router";
 import { EMPTY, observable, Observable } from "rxjs";
-import { catchError } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { IdiomaService } from "../services/idioma.service";
 import { ServicioPalabrasService } from "../services/servicio-palabras.service";
 
